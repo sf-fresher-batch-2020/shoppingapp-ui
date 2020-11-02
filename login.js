@@ -1,3 +1,4 @@
+$("#header").load("header.html");
 function login(){
     event.preventDefault();
     let email = document.querySelector("#email").value;
