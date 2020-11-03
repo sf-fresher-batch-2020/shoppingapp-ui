@@ -1,4 +1,3 @@
-$("#header").load("header.html");
 function login(){
     event.preventDefault();
     let email = document.querySelector("#email").value;
@@ -10,7 +9,7 @@ function login(){
     
     if(users)
     {
-        window.location.href="index.html";
+        window.location.href="welcome.html";
     }
     else
     {
