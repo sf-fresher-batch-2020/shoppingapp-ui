@@ -9,10 +9,10 @@ function login(){
     
     if(users)
     {
-        window.location.href="welcome.html";
+        window.location.href=" ";
     }
     else
     {
         document.querySelector("#message").innerHTML = "invalid";
     }
-}
+} 

@@ -45,5 +45,113 @@ label
      background-size: cover;
    }
    
-  
-  
+  .shopping-cart{
+      position: relative;
+      padding-top: 40px;
+      color: white;
+  }
+
+  .image-class{
+    height: 300px;
+    width: 320px;
+  }
+
+  button{
+      font-size: 16px;
+      
+  }
+  .product-price{
+      font-size: 16px;
+  }
+  .grid-container {
+    padding: 0 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 3rem 1rem;
+  }
+  .product-grid{
+     display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 325px;
+  border: 3px solid;
+  float: left;
+  padding-bottom: 5%px;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1); 
+  }
+
+  .cartBox{
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 99999;
+      transition: 0.3s linear;
+      transform: scale(0);
+  }
+  .cartBox.active{
+      transform: scale(1);
+  }
+  .cartBox .cart{
+      position: relative;
+      height: 70%;
+      width: 80%;
+      background:white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  .cartBox .cart i{
+      position: absolute;
+      right: 0;
+      top: 0;
+      background: #f00;
+      padding: 10px 15px;
+      color: white;
+      cursor: pointer;
+  }
+  .cartBox .cart i:hover{
+      background: #ff0000a5;
+  }
+  .cartBox .cart h1{
+      position: relative;
+      margin-top: 2%;
+      font-size: 2.8rem;
+      color: #017bf5;
+  }
+ /* .bg-modal{
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      position: absolute;
+      top:0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      display: none;
+  }
+  .modal-content{
+      width: 500px;
+      height:350px;
+      background-color: white;
+      border-radius: 4px;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+  }
+
+  .close{
+    position: absolute;
+    top: 0;
+    right: 14px;
+    font-size: 42px;
+    transform: rotate(45deg);
+    cursor: pointer;
+  }
+*/
