@@ -9,7 +9,7 @@ function login(){
     
     if(users)
     {
-        window.location.href=" ";
+        window.location.href="cart.html";
     }
     else
     {
