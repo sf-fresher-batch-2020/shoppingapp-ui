@@ -14,5 +14,6 @@ function login(){
     else
     {
         document.querySelector("#message").innerHTML = "invalid";
+        alert("Invalid Credentials");
     }
 } 
