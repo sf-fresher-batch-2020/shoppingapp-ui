@@ -111,12 +111,12 @@
             console.log(cartCloseBtn);
             console.log(cartBox);
 
-            iconShopping.addEventListener("click", function () {
+            /*iconShopping.addEventListener("click", function () {
                 cartBox.classList.add('active');
             });
             cartCloseBtn.addEventListener("click", function () {
                 cartBox.classList.remove('active');
-            });
+            });*/
         }
             
         function displayCartItems(){
@@ -170,17 +170,18 @@
             // iconShoppingspan.innerHTML = no;
 
             //cart table data
+            const cartBox = document.querySelector('.cartBox');
             const cartBoxTable = cartBox.querySelector('table');
             let tableData = '';
             tableData += '<tr><th>S no.</th><th>Item Name</th><th>Item No</th><th>Item Price</th><th></th></tr>';
-            if (JSON.parse(localStorage.getItem('items')) === null) {
+            if (JSON.parse(localStorage.getItem('items')) === []) {
                 iconShoppingspan.innerHTML = 0;
                 tableData += '<tr><td colspan = "5">NoItems Found</td></tr>'
             }
             else {
                 let total = 0;
                 let cart_items = JSON.parse(localStorage.getItem('items'));
-                let user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"))
+                let user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
                 let myCart_items = cart_items.filter(Obj => Obj.createdBy == user.username);
                 console.log("mycart_items", myCart_items);
                 iconShoppingspan.innerHTML = myCart_items.length;
@@ -192,7 +193,19 @@
                 tableData += "<tr><td>total</td><td>" + total + "</td></tr>";
             }
             cartBoxTable.innerHTML = tableData;
-        
+            const iconShopping = document.querySelector('#cart');
+            const cartCloseBtn = document.querySelector('.fa-close');
+            //const cartBox = document.querySelector('.cartBox');
+            console.log(iconShopping);
+            console.log(cartCloseBtn);
+            console.log(cartBox);
+
+            iconShopping.addEventListener("click", function () {
+                cartBox.classList.add('active');
+            });
+            cartCloseBtn.addEventListener("click", function () {
+                cartBox.classList.remove('active');
+            });
         }
 
     </script>

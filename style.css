@@ -125,6 +125,16 @@ label
       font-size: 2.8rem;
       color: #017bf5;
   }
+  .cartBox .cart button{
+    position: relative;
+    margin-bottom: 2%;
+    top: 80px;
+    color: black;
+    background-color: green;
+}
+.cartBox .cart button:hover{
+    background-color: palegreen;
+}
 
  
  /* .bg-modal{
