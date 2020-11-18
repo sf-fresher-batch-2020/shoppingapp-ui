@@ -24,6 +24,10 @@
             localStorage.setItem('items', JSON.stringify(items));
             window.location.reload();
         };
+        function clearAll(x){
+            localStorage.removeItem("items");
+            window.location.reload();            
+        }
     </script>
 </head>
 
@@ -31,24 +35,64 @@
     <header id="header">
 
     </header>
-    <div id="app"></div>
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-2">
+                <div class="dropdown">
+                    <button onclick="dropdown()" class="dropbtn">Filter by Category</button>
+                    <div id="myDropdown" class="dropdown-content">
+                       <a href="cart.html?category=All" class="dropdown-item" data-loggedin=true>All</a>
+                                  <a href="cart.html?category=Bangles" class="dropdown-item" data-loggedin=true>Bangles</a>
+                                  <a href="cart.html?category=Earrings" class="dropdown-item" data-loggedin=true>Earrings</a>  
+                                  <a href="cart.html?category=Bracelets" class="dropdown-item" data-loggedin=true>Bracelets</a>
+                              </div>
+                  </div>
+            </div>
+            <div class="col-10">
+                <div id="app" ></div>
+                
+            </div>
+        </div>
+    </div>
+
     <div class="cartBox">
         <div class="cart">
             <i class="fa fa-close"></i>
             <h1>Cart</h1>
-            <table></table>
+            <table border="2px solid black"></table>
+            <button type="button" onclick="clearAll(this)">Clear Cart</button>
+            <button type="button" id="orderbtn" onclick="tqfun()"><b>Place Order</b></button>
         </div>
     </div>
+    
     <script>
-        var a = JSON.parse(window.localStorage.getItem("cart"));
-        var b = JSON.stringify(a);
+        function dropdown() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+        function tqfun(){
+            if(localStorage.getItem("items") == null){
+            alert("No items in cart");}
+            else{
+                alert("Thank You for ordering with us");
+            }
+        }
+        params=new URLSearchParams(window.location.search.substring(1));
+        let category = params.get('category');
+        console.log(category);
         var url = "https://shoppingapp-mock-api.herokuapp.com/api/products";
         fetch(url).then((res) => res.json()).then(res => {
-            let products = res;
-            console.log(products);
-            displayProducts(products);
+            let allProducts = res;
+            if(category == 'All'){
+                displayProducts(allProducts);
+            }
+            else{
+                let filteredProducts=allProducts.filter(obj=>obj.category==category);
+                displayProducts(filteredProducts);
+            }            
+            
         });
         function displayProducts(products) {
+            console.log(products);
             document.getElementById("app").innerHTML = `
         <h1 class="grid-container">${products.map(function (user) {
                 return `
@@ -110,56 +154,12 @@
             console.log(iconShopping);
             console.log(cartCloseBtn);
             console.log(cartBox);
-
-            /*iconShopping.addEventListener("click", function () {
-                cartBox.classList.add('active');
-            });
-            cartCloseBtn.addEventListener("click", function () {
-                cartBox.classList.remove('active');
-            });*/
         }
             
         function displayCartItems(){
             const addtocart = document.getElementsByClassName('image-addtocart');
             let items = [];
-            /*for (let i = 0; i < addtocart.length; i++) {
-                addtocart[i].addEventListener("click", function (e) {
-                    if (typeof (Storage) !== 'undefined') {
-                        let item = {
-                            id: i + 1,
-                            name: e.target.parentElement.children[1].textContent,
-                            price: e.target.parentElement.children[2].textContent,
-                            no: 1
-                        };
-                        if (JSON.parse(localStorage.getItem('items')) === null) {
-                            items.push(item);
-                            localStorage.setItem("items", (JSON.stringify(items)));
-                            window.location.reload();
-
-                        }
-                        else {
-                            const localItems = JSON.parse(localStorage.getItem("items"));
-                            localItems.map(data => {
-
-                                if (item.id == data.id) {
-                                    item.no = data.no + 1;
-                                }
-                                else {
-                                    items.push(data);
-                                }
-
-                            });
-                            items.push(item);
-                            localStorage.setItem('items', JSON.stringify(items));
-                            window.location.reload();
-                        }
-                    }
-                    else {
-                        alert('local storage is not working');
-                    }
-
-                });
-            }*/
+            
             //data for shopping cart
             const iconShoppingspan = document.querySelector('.iconShopping span');
             console.log(iconShoppingspan);
@@ -167,8 +167,7 @@
             JSON.parse(localStorage.getItem('items')).map(data => {
                 no = no + data.no;
             });
-            // iconShoppingspan.innerHTML = no;
-
+            
             //cart table data
             const cartBox = document.querySelector('.cartBox');
             const cartBoxTable = cartBox.querySelector('table');
@@ -190,12 +189,11 @@
                     tableData += '<tr><th>' + data.id + '</th><th>' + data.name + '</th><th>' + data.no + '</th><th>' + data.price + '</th><th><a href="#" onclick = Delete(this);>Delete</a></th></tr>';
                     total = total + data.no * data.price;
                 });
-                tableData += "<tr><td>total</td><td>" + total + "</td></tr>";
+                tableData += "<tr ><th colspan='3'>Total</th><th>Rs."+ total + "</th><th></th></tr>";
             }
             cartBoxTable.innerHTML = tableData;
             const iconShopping = document.querySelector('#cart');
             const cartCloseBtn = document.querySelector('.fa-close');
-            //const cartBox = document.querySelector('.cartBox');
             console.log(iconShopping);
             console.log(cartCloseBtn);
             console.log(cartBox);

@@ -41,7 +41,7 @@ label
     }
    body{
      text-align: center;
-     background-image: url(background.jpg);
+     /*background-image: url(background.jpg);*/
      background-size: cover;
    }
    
@@ -136,34 +136,43 @@ label
     background-color: palegreen;
 }
 
- 
- /* .bg-modal{
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      position: absolute;
-      top:0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      display: none;
-  }
-  .modal-content{
-      width: 500px;
-      height:350px;
-      background-color: white;
-      border-radius: 4px;
-      text-align: center;
-      padding: 20px;
-      position: relative;
-  }
-
-  .close{
-    position: absolute;
-    top: 0;
-    right: 14px;
-    font-size: 42px;
-    transform: rotate(45deg);
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
     cursor: pointer;
   }
-*/
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown a:hover {background-color: #ddd;}
+  
+  .show {display: block;}
+ 
+ 
