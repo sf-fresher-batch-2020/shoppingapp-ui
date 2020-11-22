@@ -3,12 +3,18 @@
      
      <div class="collapse navbar-collapse" id="collapsibleNavId">
          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="cart.html" data-loggedin=true>Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="myorders.html" data-loggedin=true>My Orders</a>
+            </li>
              <li class="nav-item">
                  <a class="nav-link" href="index.html" data-loggedin=false>Home</a>
              </li>
          </ul>
          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-             <li class="nav-item active" style="padding-top: 4.5%;">
+             <li class="nav-item active" style="padding-top: 4.5%;" data-loggedin="true">
                  <div id="cart" class= "iconShopping" onclick="displayCartItems()">
  
                  <i class="fa fa-shopping-cart fa-lg" style="color:white;"></i>
@@ -59,18 +65,4 @@
      localStorage.removeItem("LOGGED_IN_USER");
      window.location.href ="index.html";
  }
- 
- function filterProducts(){
-     let listTemp = JSON.parse(localStorage.getItem("products"));
-             var productlist= listTemp ? listTemp : [];
-             console.log(productlist);
-             let allstring="ALL";
-             
-             if(this.allstring=="ALL"){
-                 this.filterprod=this.productlist;
-             }
-             else{
-                  this.filterprod=this.productlist.filter(obj=> obj.category==this.category);
-             }
- } 
  </script>
