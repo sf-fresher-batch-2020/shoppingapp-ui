@@ -9,11 +9,11 @@ function login(){
     
     if(user)
     {
-        window.location.href="cart.html";
+        window.location.href="cart.html?category=All";
     }
     else
     {
-        document.querySelector("#message").innerHTML = "invalid";
+       // document.querySelector("#message").innerHTML = "invalid";
         toastr.error("Invalid Credentials!");
     }
 } 

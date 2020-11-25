@@ -1,0 +1,101 @@
+[
+    {
+      "id": 1,
+      "title": "Silk Thread Bangles",
+      "price": 130,
+      "category": "Bangles",
+      "range": "medium",
+      "description": "Hanmad Jewellery",
+      "image": "./image/img1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Silk Thread Bangles",
+      "price": 121,
+      "category": "Bangles",
+      "range": "medium",
+      "description": "Hanmad Jewellery",
+      "image": "./image/img2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Silk Thread Bangles",
+      "price": 150,
+      "category": "Bangles",
+      "range": "medium",
+      "description": "Hanmad Jewellery",
+      "image": "./image/img3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Silk Thread Braclets",
+      "price": 60,
+      "category": "Bracelets",
+      "range": "low",
+      "description": "Hanmad Jewellery",
+      "image": "./image/img4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Silk Thread Bangles",
+      "price": 250,
+      "category": "Bangles",
+      "range": "high",
+      "description": "Hanmad Jewellery",
+      "image": "./image/img5.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Silk Thread Bangles",
+      "price": 250,
+      "category": "Bangles",
+      "range": "high",
+      "description": "Hanmad Jewellery",
+      "image": "./image/img6.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Quilled Earrings",
+      "price": 35,
+      "category": "Earrings",
+      "range": "low",
+      "description": "Hanmad Jewellery",
+      "image": "./image/img7.jpg"
+    },
+    {
+      "id": 8,
+      "title": "Silk Thread Bangles",
+      "price": 90,
+      "category": "Bangles",
+      "range": "low",
+      "description": "Hanmad Jewellery",
+      "image": "./image/img8.jpg"
+    },
+    {
+      "id": 9,
+      "title": "Silk Thread Bangles",
+      "price": 149,
+      "category": "Bangles",
+      "range": "medium",
+      "description": "Hanmad Jewellery",
+      "image": "./image/img9.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Silk Thread Bangles",
+      "price": 99,
+      "category": "Bangles",
+      "range": "low",
+      "description": "Hanmad Jewellery",
+      "image": "./image/img10.jpg"
+    },
+    {
+      "id": 11,
+      "title": "Silk Thread Bangles",
+      "price": 60,
+      "category": "Bangles",
+      "range": "low",
+      "description": "Hanmad Jewellery",
+      "image": "./image/img11.jpg"
+    }
+  ]

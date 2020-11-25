@@ -1,17 +1,13 @@
-function loadProducts() {
-    params = new URLSearchParams(window.location.search.substring(1));
-    let category = params.get('category');
-    console.log(category);
-
-    let range = params.get('range');
-    console.log(range);
+function loadProducts(category,range) {
+    
     var url = "https://shoppingapp-mock-api.herokuapp.com/api/products";
+    //var url = "products.json";
     fetch(url).then((res) => res.json()).then(res => {
         let allProducts = res;
         console.log(JSON.stringify(allProducts));
         if (category != 'All' && category != null) {
-            allProducts = allProducts.filter(obj => obj.category == category);
-
+            //allProducts = allProducts.filter(obj => obj.category == category);
+            allProducts = allProducts.filter(obj =>category.includes(obj.category));
         }
         if (range != 'All' && range != null) {
 
@@ -20,7 +16,7 @@ function loadProducts() {
         displayProducts(allProducts);
     });
 }
-loadProducts();
+
 
 function displayProducts(products) {
     console.log(products);
@@ -150,10 +146,17 @@ function placeOrder() {
     console.log("users", linuser);
     let items = JSON.parse(localStorage.getItem("items"));
     let orders = JSON.parse(localStorage.getItem("ORDERS")) || [];
-    let orderObj = { id: 1, items: items, createdBy: linuser.username, createdDate: new Date().toJSON() };
-    orders.push(orderObj);
+    let orderObj = { items: items, createdBy: linuser.username, createdDate: new Date().toJSON(),status:"ORDERED" };
+    //orders.push(orderObj);
     localStorage.removeItem("items");
-    localStorage.setItem("ORDERS", JSON.stringify(orders));
+    //localStorage.setItem("ORDERS", JSON.stringify(orders));
+    let url = "https://shoppingapp-mock-api.herokuapp.com/api/orders/";
+    //POST (url,orders);
+
+    axios.post(url,orderObj).then (res=>{
+        console.log(res);
+
+
     console.log(orders);
     document.querySelector('#ordermsg').style.display = "block";
     document.querySelector('.alert-success').style.display = "block";
@@ -161,5 +164,6 @@ function placeOrder() {
     document.querySelector('#clearcartitemsbtn').style.display = "none";
     document.querySelector('#cartitemstable').style.display = "none";
     document.querySelector('#cartitems').style.display = "none";
+    });
 
 }

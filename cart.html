@@ -10,13 +10,15 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-    <script src="cart.js"></script>
-    <script src="myorders.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js" integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ==" 
+        crossorigin="anonymous"></script>
+ 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     </link>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css ">
+    
     <script>
         function Delete(e) {
             let items = [];
@@ -49,10 +51,10 @@
                             <label for="category"
                                 style="background: cadetblue; text-align: center; width: 100px;">CATEGORY</label>
 
-                            <input type="radio" name="category" value="All">All</br>
-                            <input type="radio" name="category" value="Bangles">Bangles</br>
-                            <input type="radio" name="category" value="Earrings">Earrings</br>
-                            <input type="radio" name="category" value="Bracelets">Bracelets</br>
+                            <input type="checkbox" name="category" value="All">All</br>
+                            <input type="checkbox"name="category" value="Bangles">Bangles</br>
+                            <input type="checkbox" name="category" value="Earrings">Earrings</br>
+                            <input type="checkbox" name="category" value="Bracelets">Bracelets</br>
 
                             <label for="range"
                                 style="background: cadetblue; text-align: center;width: 100px;">RANGE</label>
@@ -82,7 +84,7 @@
                 style="background: green;color: black; display: none; padding-top: 20px;">SUCCESSFUL!</h2>
             <p style="display: none;" id="ordermsg"><b> </br>Your Order has been Placed Successfully.</br></br>
                     Thank You for Shopping with Us!</br></br>
-                    Click on My Orders to review your order details.</b>
+                    Click on <a href="myorders.html"> My Orders</a> to review your order details.</b>
             </p>
             <table border="2px solid black" id="cartitemstable"></table>
             <button type="button" id="clearcartitemsbtn" onclick="clearAll(this)">Clear Cart</button>
@@ -95,7 +97,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="productName">Modal title</h5>
+                    <h5 class="modal-title" id="productName"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -112,7 +114,29 @@
             </div>
         </div>
     </div>
+    <script src="cart.js"></script>
+    <script src="myorders.js"></script>
     <script>$("#header").load("header.html");</script>
+    <script>
+        params = new URLSearchParams(window.location.search.substring(1));
+    let category = params.getAll('category');
+    console.log(category);
+
+    let range = params.get('range');
+    console.log(range);
+    document.querySelectorAll('input[name="category"]').forEach(e=> {    
+        //if ( e.value==category)
+        if(category.includes(e.value)) 
+            e.checked = true;
+        } );
+console.log(category);
+        document.querySelectorAll('input[name="range"]').forEach(e=> {    
+            if ( e.value==range) 
+                e.checked = true;
+            } );
+loadProducts(category,range);
+    </script>
+       
 </body>
 
 </html>
