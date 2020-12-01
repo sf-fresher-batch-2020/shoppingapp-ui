@@ -59,7 +59,7 @@ function addtocart(id, price, title) {
     if (JSON.parse(localStorage.getItem('items')) === null) {
         items.push(item);
         localStorage.setItem("items", (JSON.stringify(items)));
-        window.location.reload();
+       // window.location.reload();
 
     }
     else {
@@ -76,9 +76,9 @@ function addtocart(id, price, title) {
         });
         items.push(item);
         localStorage.setItem('items', JSON.stringify(items));
-        window.location.reload();
+       // window.location.reload();
     }
-
+toastr.success("Item added to cart successfullu");
 }
 window.onload = function () {
     const iconShopping = document.querySelector('#cart');
