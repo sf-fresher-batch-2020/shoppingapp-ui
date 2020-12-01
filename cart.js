@@ -78,7 +78,7 @@ function addtocart(id, price, title) {
         localStorage.setItem('items', JSON.stringify(items));
        // window.location.reload();
     }
-toastr.success("Item added to cart successfullu");
+toastr.success("Item added to cart successfully");
 }
 window.onload = function () {
     const iconShopping = document.querySelector('#cart');
