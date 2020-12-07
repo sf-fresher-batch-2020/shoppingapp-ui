@@ -1,60 +1,91 @@
-###Creating Database
+###Creating Database 
 create database shopping_app_db;
 
-###Using Created Database
+###Using Created Database 
 use shopping_app_db;
 
-###Creating  Users Table
-create table users(
-username varchar(50) not null,
-email varchar(30) not null unique, 
-password varchar(20) not null); 
+###Creating Users Table 
+CREATE TABLE `users` ( 
+`username` varchar(50) NOT NULL,`
+email` varchar(30) NOT NULL,  
+`password` varchar(20) NOT NULL,  
+`id` bigint NOT NULL AUTO_INCREMENT,  
+`role` varchar(10) DEFAULT NULL,  
+PRIMARY KEY (`id`),  
+UNIQUE KEY `email` (`email`)
+);
 
-###Inserting  values into users table
+###Inserting values into users table 
 insert into users(username,email,password) values("kalyani", "kalyani@gmail.com", "123");
 insert into users(username,email,password) values("k", "k@a.com", "abc");
 
-###Selecting all values from users table
+###Selecting all values from users table 
 select * from users;
 
-###Selecting particular user from users table  using where clause
+###Selecting particular user from users table using where clause 
 select * from users where username="k";
 
-=========================================================================================================
 
-###creating products table
-create table products(
-product_id integer primary key auto_increment,
-product_name varchar(50) not null,
-product_price integer(10) not null,
-product_description text(500),
-product_count integer(5));
+-------------------------------------------------------------------------------------------
+###creating products table 
+CREATE TABLE `products` ( 
+`product_id` int NOT NULL AUTO_INCREMENT,  
+`product_name` varchar(50) NOT NULL,  
+`product_price` int NOT NULL,  
+`product_description` text,  
+`category` varchar(20) DEFAULT NULL, 
+`productrange` varchar(20) DEFAULT NULL,  
+`image_url` varchar(300) DEFAULT NULL,  
+PRIMARY KEY (`product_id`)
+);
 
-###Inserting values into products table
-insert into products(product_id,product_name,product_pricw,product_description,product_count) values(1,"silk thread bangles", 130, "Handmade bangles",4);
-insert into products(product_id,product_name,product_pricw,product_description,product_count) values(3,"silk thread bangles", 150, "Handmade silk Bangles",3);
 
-###Selecting all products from  proucts table
-select * from products; 
+###Inserting values into products table 
+INSERT INTO `products` VALUES (1,'silk thread bangles',130,'Handmade bangles','bangles','medium','assets/image/img1.jpg');
+INSERT INTO `products` VALUES (2,'silk thread bangles',121,'Handmade bangles','bangles','medium','assets/image/img2.jpg');
+INSERT INTO `products` VALUES (3,'silk thread bangles',250,'Handmade bangles','bangles','high','assets/image/img3.jpg');
+INSERT INTO `products` VALUES (4,'silk thread bracelet',60,'Handmade bangles','bracelets','low','assets/image/img4.jpg');
 
-=============================================================================================================================================
+###Selecting all products from proucts table 
+select * from products;
 
-###Altering table to add a column to users table (edited) 
-alter table users add column (id bigint primary key auto_increment);
 
-=============================================================================================================================================
+------------------------------------------------------------------------------------------------------------------------------
 
-###Creating orders table with foreign key referencing from products table
-create table orders(
-id bigint primary key auto_increment,
-user_id bigint not null,
-total_amount int not null,
-order_date timestamp not null default current_timestamp,
-status varchar(100) not null,
-foreign key (user_id) references users(id)); 
+###creating orders table 
+CREATE TABLE `orders` (  
+`id` bigint NOT NULL AUTO_INCREMENT,  
+`user_id` bigint NOT NULL,  
+`total_amount` int NOT NULL,  
+`order_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  
+`status` varchar(100) NOT NULL,  
+PRIMARY KEY (`id`),  
+KEY `user_id` (`user_id`),  
+CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+);
 
-###Inserting values into orders table
+###Inserting values into orders table 
 insert into orders(user_id,total_amount,status) values (1,450,"success");
 
-###Selecting all order details
+###Selecting all order details 
 select * from orders;
+
+-------------------------------------------------------------------------------------
+###creating order_items table
+CREATE TABLE `order_items` (  
+`id` bigint NOT NULL AUTO_INCREMENT,  
+`order_id` bigint NOT NULL,  
+`product_id` int NOT NULL,  
+`price` varchar(20) DEFAULT NULL,  
+`quantity` int DEFAULT NULL,  
+`status` varchar(20) DEFAULT 'ORDERED',  
+PRIMARY KEY (`id`),  
+KEY `product_id` (`product_id`),  
+KEY `order_id` (`order_id`),  
+CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),  
+CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
+) ;
+
+
+###Selecting all ordered items details
+select * from order_items;
